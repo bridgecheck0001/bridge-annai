@@ -79,6 +79,11 @@
   details ol { margin-top: 8px; }
   .small { font-size: 14px; color: var(--muted); }
   .todo { background: var(--todo); padding: 0 4px; border-radius: 4px; color: var(--text); }
+  .notice { background: var(--yellow-soft); border: 1px solid #f0dc94; border-radius: 10px; padding: 14px 16px; margin: 0 0 20px; }
+  .notice p { margin: 0 0 6px; }
+  .notice p:last-child { margin: 0; }
+  .ok { color: var(--blue-dark); font-weight: 700; text-align: center; }
+  .ng { color: var(--muted); text-align: center; }
   .back { display: inline-block; margin-top: 16px; font-size: 14px; }
   footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 48px; }
 </style>
@@ -87,6 +92,11 @@
 <main class="wrap">
   <p class="org">一般社団法人仕事と治療の両立支援ネット－ブリッジ</p>
   <h1>個人面談・講座のご案内</h1>
+
+  <div class="notice">
+    <p><strong>ただいまホームページをメンテナンス中です。</strong></p>
+    <p>ご不便をおかけして申し訳ございません。メンテナンスの間は、個人面談と講座のご案内・お申込みを、この簡易ページでご案内しています。</p>
+  </div>
 
   <nav class="toc" aria-label="ページ内の案内">
     <a href="#mendan">個人面談（無料）<span>治療と仕事の両立について、キャリアコンサルタントがご相談を伺います</span></a>
@@ -114,19 +124,26 @@
 
     <h3>お申込みから面談までの流れ</h3>
     <ul>
-      <li><strong>日程を選んで申し込みたい方</strong><br>下の予約ページで日程と相談方法を選んでお申し込みください。受付メールが届きます。</li>
-      <li><strong>相談内容がまとまらない方</strong><br>まずはお問い合わせください。ブリッジから返信し、必要に応じて面談の日程・方法を調整します。</li>
+      <li><strong>日程を選んで申し込みたい方</strong><br>下の申込フォームで、ご希望の日時と相談方法を選んでお申し込みください。受付メールが届きます。</li>
+      <li><strong>相談内容がまとまらない方</strong><br>まずは<a href="https://forms.gle/VvA8T5J6CpyaXiEA6" target="_blank" rel="noopener">お問合せフォーム</a>からお問い合わせください。ブリッジから返信し、必要に応じて面談の日程・方法を調整します。</li>
       <li><strong>通院先の相談支援センターを通したい方</strong><br>通院先の相談支援センターにご依頼ください。相談員からブリッジに連絡が入り、日程・場所・方法を調整します。</li>
     </ul>
 
-    <h3>実施日</h3>
-    <div class="card">
-      <p>10月23日（金）、10月29日（木）、11月5日（木）、11月11日（水）、11月16日（月）、11月27日（金）</p>
-      <p>各日 10:00〜12:00／14:00〜16:00</p>
-      <p class="small">空き状況は予約ページでご確認ください。予約が入った枠は自動的に選べなくなります。</p>
-      <a class="btn" href="https://calendly.com/bridge-check0001/kojin-mendan" target="_blank" rel="noopener">面談の日程を予約する</a>
-      <p class="small" style="margin-top:8px;">予約ページは外部サービス（Calendly）に移動します。</p>
-    </div>
+    <h3>スケジュール</h3>
+    <table>
+      <thead><tr><th>実施日</th><th>10:00〜12:00</th><th>14:00〜16:00</th></tr></thead>
+      <tbody>
+        <tr><td>10月23日（金）</td><td class="ng">✕</td><td class="ng">✕</td></tr>
+        <tr><td>10月29日（木）</td><td class="ng">✕</td><td class="ng">✕</td></tr>
+        <tr><td>11月5日（木）</td><td class="ng">✕</td><td class="ok">○</td></tr>
+        <tr><td>11月11日（水）</td><td class="ok">○</td><td class="ng">✕</td></tr>
+        <tr><td>11月16日（月）</td><td class="ok">○</td><td class="ok">○</td></tr>
+        <tr><td>11月27日（金）</td><td class="ok">○</td><td class="ok">○</td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:8px;">○：受付中　✕：受付終了</p>
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdwjtIfT6AYa5DpBS836pilIN-EwDVYq2Eq8NWkjvMeaubysg/viewform" target="_blank" rel="noopener">個人面談のお申込みはこちら</a>
+    <p class="small" style="margin-top:8px;">お申込みフォーム（Googleフォーム）に移動します。ブリッジのドメイン「@bridge-nagoya.jp」からのメールを受信できるよう設定してください。</p>
 
     <h3>ご相談された方の声</h3>
     <div class="voice">
@@ -196,9 +213,9 @@
         <dt>締切</dt><dd>1月28日（木）</dd>
       </dl>
     </div>
-    <a class="btn" href="#"><span class="todo">【要確認】GoogleフォームのURL</span>　お申込みはこちら</a>
+    <a class="btn" href="https://forms.gle/VvA8T5J6CpyaXiEA6" target="_blank" rel="noopener">更新講習のお申込みはこちら</a>
     <p class="small" style="margin-top:8px;">
-      ※ お申込みフォーム（Googleフォーム）に移動します。<br>
+      ※ ブリッジのお問合せフォーム（Googleフォーム）に移動します。「お問合せ内容」で<strong>「キャリコン更新講習申込」</strong>を選び、詳細欄に<strong>ご希望の回（第10回または第11回）</strong>をご記入ください。<br>
       ※ 時間内に昼休憩（60分）を含みます。<br>
       ※ お申込みは受講日の6か月前から2週間前まで受け付けます。<br>
       ※ 2026年度の開催は第11回までです。2027年度の日程は決まり次第お知らせします。
@@ -253,7 +270,8 @@
       <li>（任意）ブリッジ会員に入会し、ナビゲーター認定・認定証の発行<br><span class="small">年会費6,000円／入会時事務手数料3,000円</span></li>
     </ol>
     <p class="small">動画はブラウザで再生するため、アプリのダウンロードは不要です。安定したインターネット環境と、基本的なパソコン操作が必要です。</p>
-    <a class="btn" href="#"><span class="todo">【要確認】申込フォームのURL</span>　お申込みはこちら</a>
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeEOEBopQD36KVTYrXWoTjkT0TeLjxsdV9zYJlL_JRDQJ6JiA/viewform" target="_blank" rel="noopener">養成講座のお申込みはこちら</a>
+    <p class="small" style="margin-top:8px;">お申込みフォーム（Googleフォーム）に移動します。携帯キャリア以外の、パソコンで使えるメールアドレスをご指定ください。</p>
 
     <h3>カリキュラム（全14講座）</h3>
     <details>
@@ -293,7 +311,7 @@
       <li>A〜Cの一部課程の修了：「受講証明証」</li>
     </ul>
     <p class="small">ナビゲーター認定は5年ごとの更新が必要です（事務手数料あり）。更新には、事例検討会への参加などの継続学習・活動の要件があります。</p>
-    <a class="btn" href="#"><span class="todo">【要確認】修了報告フォームのURL</span>　修了報告・登録申請</a>
+    <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfYCLJQMyhYxO4FYfXln3nBrRxWQs6NlY9MwI5Duc4mQomMFg/viewform" target="_blank" rel="noopener">修了報告・ナビゲーター登録申請はこちら</a>
     <a class="back" href="#">▲ ページの先頭へ</a>
   </section>
 
@@ -302,7 +320,9 @@
     <h2 class="block-title">お問い合わせ</h2>
     <p>一般社団法人 仕事と治療の両立支援ネット－ブリッジ<br>
     名古屋市千種区内山3丁目26-16 プロクシィ千種11C（JR・地下鉄 千種駅前）<br>
-    電話：<span class="todo">【要確認】</span>／メール：<span class="todo">【要確認】</span></p>
+    電話：<a href="tel:0527538006">052-753-8006</a><br>
+    メール：<a href="mailto:jimukyoku@bridge-nagoya.jp">jimukyoku@bridge-nagoya.jp</a></p>
+    <a class="btn" href="https://forms.gle/VvA8T5J6CpyaXiEA6" target="_blank" rel="noopener">お問合せフォーム</a>
   </section>
 
   <footer>© 一般社団法人仕事と治療の両立支援ネット－ブリッジ</footer>
