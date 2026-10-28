@@ -86,6 +86,9 @@
   .notice p:last-child { margin: 0; }
   .ok { color: var(--blue-dark); font-weight: 700; text-align: center; }
   .ng { color: var(--muted); text-align: center; }
+  .badge.few { background: #fff3c4; color: #7a5b00; }
+  .badge.full { background: #fde2e1; color: #a4262c; }
+  .btn.is-full { background: #c9ced3; color: #4a5258; pointer-events: none; cursor: default; }
   .back { display: inline-block; margin-top: 16px; font-size: 14px; }
   footer { text-align: center; font-size: 13px; color: var(--muted); margin-top: 48px; }
 </style>
@@ -131,21 +134,9 @@
       <li><strong>通院先の相談支援センターを通したい方</strong><br>通院先の相談支援センターにご依頼ください。相談員からブリッジに連絡が入り、日程・場所・方法を調整します。</li>
     </ul>
 
-    <h3>スケジュール</h3>
-    <table>
-      <thead><tr><th>実施日</th><th>10:00〜12:00</th><th>14:00〜16:00</th></tr></thead>
-      <tbody>
-        <tr><td>10月23日（金）</td><td class="ng">✕</td><td class="ng">✕</td></tr>
-        <tr><td>10月29日（木）</td><td class="ng">✕</td><td class="ng">✕</td></tr>
-        <tr><td>11月5日（木）</td><td class="ng">✕</td><td class="ok">○</td></tr>
-        <tr><td>11月11日（水）</td><td class="ok">○</td><td class="ng">✕</td></tr>
-        <tr><td>11月16日（月）</td><td class="ok">○</td><td class="ok">○</td></tr>
-        <tr><td>11月27日（金）</td><td class="ok">○</td><td class="ok">○</td></tr>
-      </tbody>
-    </table>
-    <p class="small" style="margin-top:8px;">○：受付中　✕：受付終了</p>
     <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdwjtIfT6AYa5DpBS836pilIN-EwDVYq2Eq8NWkjvMeaubysg/viewform" target="_blank" rel="noopener">個人面談のお申込みはこちら</a>
-    <p class="small" style="margin-top:8px;">お申込みフォーム（Googleフォーム）に移動します。ブリッジのドメイン「@bridge-nagoya.jp」からのメールを受信できるよう設定してください。</p>
+    <p class="small" style="margin-top:8px;">お申込みフォーム（Googleフォーム）に移動します。<br>
+    日程は週に1回、午前（10:00～12:00）、午後（14:00～16:00）の2枠をご用意しています。フォームでご確認の上、ご希望の枠をご予約ください。ブリッジのドメイン「@bridge-nagoya.jp」からのメールを受信できるよう設定してください。</p>
 
     <h3>ご相談された方の声</h3>
     <div class="voice">
@@ -197,7 +188,7 @@
     </ul>
 
     <h3>開催日程とお申込み（2026年度）</h3>
-    <div class="session">
+    <div class="session" data-session="10">
       <div class="session-head"><span class="session-no">第10回</span><span class="badge">受付中</span></div>
       <dl class="info">
         <dt>日時</dt><dd>12月20日（日）9:30〜16:30</dd>
@@ -205,8 +196,9 @@
         <dt>定員</dt><dd>20名</dd>
         <dt>締切</dt><dd>12月4日（金）</dd>
       </dl>
+      <a class="btn" href="https://forms.gle/CinPUpngMB4E3jtV6" target="_blank" rel="noopener">第10回のお申込みはこちら</a>
     </div>
-    <div class="session">
+    <div class="session" data-session="11">
       <div class="session-head"><span class="session-no">第11回</span><span class="badge">受付中</span></div>
       <dl class="info">
         <dt>日時</dt><dd>2月11日（木・祝）9:30〜16:30</dd>
@@ -214,10 +206,10 @@
         <dt>定員</dt><dd>20名</dd>
         <dt>締切</dt><dd>1月28日（木）</dd>
       </dl>
+      <a class="btn" href="https://forms.gle/EE88EyRKbbdXiG7t5" target="_blank" rel="noopener">第11回のお申込みはこちら</a>
     </div>
-    <a class="btn" href="https://forms.gle/VvA8T5J6CpyaXiEA6" target="_blank" rel="noopener">更新講習のお申込みはこちら</a>
     <p class="small" style="margin-top:8px;">
-      ※ ブリッジのお問合せフォーム（Googleフォーム）に移動します。「お問合せ内容」で<strong>「キャリコン更新講習申込」</strong>を選び、詳細欄に<strong>ご希望の回（第10回または第11回）</strong>をご記入ください。<br>
+      ※ 各回のお申込みフォーム（Googleフォーム）に移動します。ブリッジのドメイン「@bridge-nagoya.jp」からのメールを受信できるよう設定してください。<br>
       ※ 時間内に昼休憩（60分）を含みます。<br>
       ※ お申込みは受講日の6か月前から2週間前まで受け付けます。<br>
       ※ 2026年度の開催は第11回までです。2027年度の日程は決まり次第お知らせします。
@@ -329,5 +321,36 @@
 
   <footer>© 一般社団法人仕事と治療の両立支援ネット－ブリッジ</footer>
 </main>
+<script>
+// 申込状況を自動で表示（受付中／残りわずか／満席）
+// STATUS_URL には、Apps Script の「ウェブアプリ」のURL（…/exec）を貼ります
+const STATUS_URL = '';
+(async function () {
+  if (!STATUS_URL) return;
+  try {
+    const res = await fetch(STATUS_URL);
+    const data = await res.json();
+    document.querySelectorAll('.session[data-session]').forEach(function (card) {
+      const info = data[card.dataset.session];
+      if (!info) return;
+      const badge = card.querySelector('.badge');
+      const btn = card.querySelector('.btn');
+      if (info.status === '満席') {
+        badge.textContent = '満席';
+        badge.classList.add('full');
+        btn.textContent = '満席になりました';
+        btn.classList.add('is-full');
+        btn.removeAttribute('href');
+        btn.setAttribute('aria-disabled', 'true');
+      } else if (info.status === '残りわずか') {
+        badge.textContent = '残りわずか';
+        badge.classList.add('few');
+      }
+    });
+  } catch (e) {
+    // 読み込めなかったときは「受付中」のまま表示します
+  }
+})();
+</script>
 </body>
 </html>
